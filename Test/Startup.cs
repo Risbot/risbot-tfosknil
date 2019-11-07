@@ -21,6 +21,11 @@ namespace Test
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Connection to mssql database
+            services.AddDbContext<AppDbContext>(options =>
+              options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+            );
+
             services.AddControllersWithViews();
 
             // In production, the React files will be served from this directory
@@ -42,6 +47,8 @@ namespace Test
                 app.UseExceptionHandler("/Error");
             }
 
+            // Created database when not exist
+            app.CreateDatabase();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
