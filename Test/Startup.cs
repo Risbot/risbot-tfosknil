@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Test.Data;
+using Test.Repository;
 
 namespace Test
 {
@@ -25,6 +26,8 @@ namespace Test
             services.AddDbContext<AppDbContext>(options =>
               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
             );
+
+            services.AddTransient<IDatasetRepository, DatasetRepository>();
 
             services.AddControllersWithViews();
 
