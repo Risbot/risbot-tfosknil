@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Test.Data;
 using Test.Repository;
+using Test.Services;
 
 namespace Test
 {
@@ -28,6 +29,7 @@ namespace Test
             );
 
             services.AddTransient<IDatasetRepository, DatasetRepository>();
+            services.AddTransient<IStatisticService, StatisticService>();
 
             services.AddControllersWithViews();
 
