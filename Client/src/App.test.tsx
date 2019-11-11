@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Layout from './components/Layout';
 import App from './App';
@@ -23,5 +24,10 @@ describe('App', () => {
   test('contains Layout', () => {
     const wrapper = shallow(<App />);
     expect(wrapper.find(Layout)).toHaveLength(1);
+  });
+
+  test('contains Provider', () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper.find(Provider)).toHaveLength(1);
   });
 });
