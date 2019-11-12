@@ -72,7 +72,11 @@ namespace Test
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseReactDevelopmentServer(npmScript: "start");
+                    spa.UseProxyToSpaDevelopmentServer(
+                        Configuration
+                        .GetSection("ClientBaseUri")
+                        .Value
+                        );
                 }
             });
         }
