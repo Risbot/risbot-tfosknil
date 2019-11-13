@@ -1,13 +1,13 @@
 import { Actions } from '../actions/types';
-import { DatasetStore } from './types';
+import { IDatasetStore } from './types';
 
-const initialState: DatasetStore = {
+const initialState: IDatasetStore = {
   data: null,
   isFetching: false,
   didInvalidate: false,
 };
 
-const dataset = (state = initialState, action: Actions): DatasetStore => {
+const dataset = (state = initialState, action: Actions): IDatasetStore => {
   switch (action.type) {
     case 'DATASET_LIST_REQUEST':
       return {

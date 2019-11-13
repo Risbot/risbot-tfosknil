@@ -3,22 +3,22 @@ import { AppState, Dataset } from '../types';
 import { get } from '../helpers/api';
 import {
   Actions,
-  FetchDatasetsRequest,
-  FetchDatasetsSuccess,
-  FetchDatasetsError,
+  IFetchDatasetsRequest,
+  IFetchDatasetsSuccess,
+  IFetchDatasetsError,
 } from './types';
 
-const fetchDatasetsRequest = (): FetchDatasetsRequest => {
+const fetchDatasetsRequest = (): IFetchDatasetsRequest => {
   return { type: 'DATASET_LIST_REQUEST' };
 };
 
 const fetchDatasetsSuccess = (
   payload: Array<Dataset>
-): FetchDatasetsSuccess => {
+): IFetchDatasetsSuccess => {
   return { type: 'DATASET_LIST_SUCCESS', payload };
 };
 
-const fetchDatasetsError = (): FetchDatasetsError => {
+const fetchDatasetsError = (): IFetchDatasetsError => {
   return { type: 'DATASET_LIST_ERROR' };
 };
 
