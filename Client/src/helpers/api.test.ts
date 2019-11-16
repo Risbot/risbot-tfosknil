@@ -1,6 +1,6 @@
 import nock from 'nock';
 import axios from 'axios';
-import { get, postForm } from './api';
+import { get, post } from './api';
 
 describe('api', () => {
   test('get calls axios with correct path', () => {
@@ -21,17 +21,15 @@ describe('api', () => {
 
   test('post calls axios with correct path', () => {
     axios.post = jest.fn();
-
     nock('http://example.com', { encodedQueryParams: true }).post('/test');
 
-    return postForm('test', {}).then(() => {
+    return post('test', {}).then(() => {
       expect((axios.post as jest.Mock).mock.calls).toHaveLength(1);
       expect((axios.post as jest.Mock).mock.calls[0]).toEqual([
         'http://example.com/test',
         {},
         {
           withCredentials: true,
-          headers: { 'Content-Type': 'multipart/form-data' },
         },
       ]);
     });

@@ -8,12 +8,11 @@ export const get = async (path: string) =>
     }
   );
 
-export const postForm = async (path: string, data: any) =>
+export const post = async (path: string, data: any) =>
   axios.post(
     `${process.env.REACT_APP_API_SERVER}${process.env.REACT_APP_API_PATH}${path}`,
     data,
     {
       withCredentials: true,
-      headers: { 'Content-Type': 'multipart/form-data' },
     }
   );

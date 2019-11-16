@@ -1,14 +1,15 @@
 import { Actions } from '../actions/types';
-import { IDatasetStore } from './types';
+import { IDatasetsState } from './types';
 
-const initialState: IDatasetStore = {
+const initialState: IDatasetsState = {
   data: null,
   isFetching: false,
   didInvalidate: false,
 };
 
-const dataset = (state = initialState, action: Actions): IDatasetStore => {
+const datasets = (state = initialState, action: Actions): IDatasetsState => {
   switch (action.type) {
+    case 'DATASET_ADD_REQUEST':
     case 'DATASET_LIST_REQUEST':
       return {
         ...state,
@@ -21,8 +22,15 @@ const dataset = (state = initialState, action: Actions): IDatasetStore => {
         data: action.payload,
       };
     case 'DATASET_LIST_ERROR':
+    case 'DATASET_ADD_ERROR':
       return {
         ...state,
+        isFetching: false,
+      };
+    case 'DATASET_ADD_SUCCESS':
+      return {
+        ...state,
+        didInvalidate: true,
         isFetching: false,
       };
     default:
@@ -30,4 +38,4 @@ const dataset = (state = initialState, action: Actions): IDatasetStore => {
   }
 };
 
-export default dataset;
+export default datasets;
