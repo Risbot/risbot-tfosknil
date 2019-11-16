@@ -24,9 +24,9 @@ interface IDispatchFromProps {
   addDataset: (name: string, file: File) => void;
 }
 
-type HomeProps = IStateFromProps & IDispatchFromProps;
+type HomePageProps = IStateFromProps & IDispatchFromProps;
 
-const HomePage: FC<HomeProps> = ({
+const HomePage: FC<HomePageProps> = ({
   isInvalid,
   addDataset,
   loadDatasets,

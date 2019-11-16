@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { Container, makeStyles } from '@material-ui/core';
 import { Switch, Route } from 'react-router-dom';
 import HomePage from '../HomePage';
+import DatasetPage from '../DatasetPage';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -14,9 +15,8 @@ const Layout: FC = () => {
   return (
     <Container maxWidth="md" className={classes.root} component="main">
       <Switch>
-        <Route exact path="/">
-          <HomePage />
-        </Route>
+        <Route exact path="/" component={HomePage} />
+        <Route exact component={DatasetPage} path="/dataset/:id" />
       </Switch>
     </Container>
   );

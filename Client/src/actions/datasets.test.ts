@@ -31,6 +31,10 @@ describe('Datasets actions', () => {
           isFetching: false,
           didInvalidate: false,
         },
+        statistics: {
+          data: null,
+          isFetching: false,
+        },
       });
 
       return state.dispatch(fetchDatasetsIfNeeded()).then(() => {
@@ -59,6 +63,10 @@ describe('Datasets actions', () => {
           isFetching: false,
           didInvalidate: false,
         },
+        statistics: {
+          data: null,
+          isFetching: false,
+        },
       });
 
       await state.dispatch(fetchDatasetsIfNeeded());
@@ -78,6 +86,10 @@ describe('Datasets actions', () => {
           data: null,
           isFetching: true,
           didInvalidate: false,
+        },
+        statistics: {
+          data: null,
+          isFetching: false,
         },
       });
 
@@ -103,6 +115,10 @@ describe('Datasets actions', () => {
           data: null,
           isFetching: false,
           didInvalidate: false,
+        },
+        statistics: {
+          data: null,
+          isFetching: false,
         },
       });
 
@@ -130,6 +146,10 @@ describe('Datasets actions', () => {
           data: null,
           isFetching: false,
           didInvalidate: false,
+        },
+        statistics: {
+          data: null,
+          isFetching: false,
         },
       });
 

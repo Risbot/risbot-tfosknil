@@ -35,10 +35,10 @@ namespace XUnitTest.Controllers
         }
 
         [Fact]
-        public async Task GetStatistic()
+        public async Task Get()
         {
             var controller = new StatisticController(_datasetRepository, _statisticService);
-            var result = await controller.GetStatistics("datasetId");
+            var result = await controller.Get("datasetId");
 
             var okResult = Assert.IsType<OkObjectResult>(result);
             var value = Assert.IsType<StatisticModel>(okResult.Value);

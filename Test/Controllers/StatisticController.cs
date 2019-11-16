@@ -10,7 +10,7 @@ using Test.Services;
 
 namespace Test.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/{datasetId}")]
     [ApiController]
     public class StatisticController : ControllerBase
     {
@@ -25,8 +25,8 @@ namespace Test.Controllers
             _statisticService = statisticService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetStatistics(string datasetId)
+        [HttpGet()]
+        public async Task<IActionResult> Get(string datasetId)
         {
             var statistic = new StatisticModel();
             statistic.UsersCount = await _datasetRepository.GetUsersCountAsync(datasetId);
