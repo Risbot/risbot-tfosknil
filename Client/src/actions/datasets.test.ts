@@ -2,12 +2,17 @@ import configureMockStore from 'redux-mock-store';
 import nock from 'nock';
 import thunk, { ThunkDispatch } from 'redux-thunk';
 import { fetchDatasetsIfNeeded, createDataset } from './datasets';
+import { IDatasetsState } from '../reducers/types';
 import { AppState } from '../types';
 import { Actions } from './types';
 
 afterEach(() => {
   nock.cleanAll();
 });
+
+type State = {
+  datasets: IDatasetsState;
+};
 
 describe('Datasets actions', () => {
   describe('fetch dataset', () => {
@@ -22,18 +27,14 @@ describe('Datasets actions', () => {
         ]);
 
       const mockStore = configureMockStore<
-        AppState,
+        State,
         ThunkDispatch<AppState, void, Actions>
       >([thunk]);
       const state = mockStore({
-        dataset: {
+        datasets: {
           data: null,
           isFetching: false,
           didInvalidate: false,
-        },
-        statistics: {
-          data: null,
-          isFetching: false,
         },
       });
 
@@ -54,18 +55,14 @@ describe('Datasets actions', () => {
         .reply(500);
 
       const mockStore = configureMockStore<
-        AppState,
+        State,
         ThunkDispatch<AppState, void, Actions>
       >([thunk]);
       const state = mockStore({
-        dataset: {
+        datasets: {
           data: null,
           isFetching: false,
           didInvalidate: false,
-        },
-        statistics: {
-          data: null,
-          isFetching: false,
         },
       });
 
@@ -78,18 +75,14 @@ describe('Datasets actions', () => {
 
     test('does not load when already fetching', async () => {
       const mockStore = configureMockStore<
-        AppState,
+        State,
         ThunkDispatch<AppState, void, Actions>
       >([thunk]);
       const state = mockStore({
-        dataset: {
+        datasets: {
           data: null,
           isFetching: true,
           didInvalidate: false,
-        },
-        statistics: {
-          data: null,
-          isFetching: false,
         },
       });
 
@@ -107,18 +100,14 @@ describe('Datasets actions', () => {
         .reply(200);
 
       const mockStore = configureMockStore<
-        AppState,
+        State,
         ThunkDispatch<AppState, void, Actions>
       >([thunk]);
       const state = mockStore({
-        dataset: {
+        datasets: {
           data: null,
           isFetching: false,
           didInvalidate: false,
-        },
-        statistics: {
-          data: null,
-          isFetching: false,
         },
       });
 
@@ -138,18 +127,14 @@ describe('Datasets actions', () => {
         .reply(500);
 
       const mockStore = configureMockStore<
-        AppState,
+        State,
         ThunkDispatch<AppState, void, Actions>
       >([thunk]);
       const state = mockStore({
-        dataset: {
+        datasets: {
           data: null,
           isFetching: false,
           didInvalidate: false,
-        },
-        statistics: {
-          data: null,
-          isFetching: false,
         },
       });
 

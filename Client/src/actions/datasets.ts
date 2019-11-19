@@ -38,7 +38,7 @@ const datasetAddError = (): IDatasetAddError => {
 };
 
 const shouldFetchDatasets = (state: AppState) => {
-  if (state.dataset.isFetching) {
+  if (state.datasets.isFetching) {
     return false;
   }
   return true;

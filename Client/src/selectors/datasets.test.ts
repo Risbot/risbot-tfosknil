@@ -1,3 +1,4 @@
+import { IDatasetsState } from '../reducers/types';
 import {
   getDatasets,
   getIsInvalid,
@@ -9,48 +10,48 @@ describe('Datasets selectors', () => {
   test('getDatasets returns empty array when not data', () => {
     expect(
       getDatasets({
-        dataset: { data: null, didInvalidate: false, isFetching: false },
-        statistics: { data: null, isFetching: false },
-      })
+        datasets: {
+          data: null,
+          didInvalidate: false,
+          isFetching: false,
+        } as IDatasetsState,
+      } as any)
     ).toEqual([]);
   });
 
   test('getDatasets returns data', () => {
     expect(
       getDatasets({
-        dataset: {
+        datasets: {
           data: [{ id: 'id', name: 'name' }],
           didInvalidate: false,
           isFetching: false,
-        },
-        statistics: { data: null, isFetching: false },
-      })
+        } as IDatasetsState,
+      } as any)
     ).toEqual([{ id: 'id', name: 'name' }]);
   });
 
   test('getIsInvalid returns didInvalidate value', () => {
     expect(
       getIsInvalid({
-        dataset: {
+        datasets: {
           data: [{ id: 'id', name: 'name' }],
           didInvalidate: true,
           isFetching: false,
-        },
-        statistics: { data: null, isFetching: false },
-      })
+        } as IDatasetsState,
+      } as any)
     ).toBe(true);
   });
 
   test('getIsLoading returns isFetching value', () => {
     expect(
       getIsLoading({
-        dataset: {
+        datasets: {
           data: [{ id: 'id', name: 'name' }],
           didInvalidate: false,
           isFetching: true,
-        },
-        statistics: { data: null, isFetching: false },
-      })
+        } as IDatasetsState,
+      } as any)
     ).toBe(true);
   });
 

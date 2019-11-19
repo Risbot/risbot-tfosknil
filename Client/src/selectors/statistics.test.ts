@@ -1,29 +1,20 @@
+import { IStatisticsState } from '../reducers/types';
 import { getStatistics, getIsLoading } from './statistics';
 
 describe('Statistics selectors', () => {
   test('getStatistics returns data', () => {
     expect(
       getStatistics({
-        dataset: {
-          data: null,
-          didInvalidate: false,
-          isFetching: false,
-        },
-        statistics: { data: {}, isFetching: false },
-      })
+        statistics: { data: {}, isFetching: false } as IStatisticsState,
+      } as any)
     ).toEqual({});
   });
 
   test('getIsLoading returns isFetching value', () => {
     expect(
       getIsLoading({
-        dataset: {
-          data: null,
-          didInvalidate: false,
-          isFetching: false,
-        },
-        statistics: { data: null, isFetching: true },
-      })
+        statistics: { data: null, isFetching: true } as IStatisticsState,
+      } as any)
     ).toBe(true);
   });
 });

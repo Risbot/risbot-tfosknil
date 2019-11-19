@@ -55,7 +55,7 @@ namespace XUnitTest.Controllers
         }
 
         [Fact]
-        public async Task PostDataset()
+        public async Task Post()
         {
             var controller = new DatasetController(datasetRepository);
 
@@ -72,7 +72,7 @@ namespace XUnitTest.Controllers
         }
 
         [Fact]
-        public async Task GetDataset()
+        public async Task Get()
         {
             var controller = new DatasetController(datasetRepository);
 

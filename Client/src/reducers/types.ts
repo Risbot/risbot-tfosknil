@@ -1,4 +1,4 @@
-import { Dataset, Statistics } from '../types';
+import { Dataset, Statistics, Chart } from '../types';
 
 export interface IDatasetsState {
   data: Array<Dataset> | null;
@@ -8,5 +8,10 @@ export interface IDatasetsState {
 
 export interface IStatisticsState {
   data: Statistics | null;
+  isFetching: boolean;
+}
+
+export interface IChartState {
+  data: Chart | null;
   isFetching: boolean;
 }

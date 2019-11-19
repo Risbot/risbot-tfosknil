@@ -14,7 +14,7 @@ namespace XUnitTest.Repository
 {
     public class DatasetRepositoryTest
     {
-        private readonly AppDbContext _context; 
+        private readonly AppDbContext _context;
         public DatasetRepositoryTest()
         {
             var options = new DbContextOptionsBuilder<AppDbContext>()
@@ -35,7 +35,7 @@ namespace XUnitTest.Repository
                 await repository.AddDatasetAsync("dataset name", new List<string>() { "1 0", "1 2" });
 
                 Assert.Equal(1, _context.Datasets.Count());
-                Assert.Equal(2, _context.Datasets.Select(c=>c.Friendships).Single().Count());
+                Assert.Equal(2, _context.Datasets.Select(c => c.Friendships).Single().Count());
                 Assert.Equal("dataset name", _context.Datasets.Single().Name);
                 var data = new Tuple<string,string>[]{
                        new Tuple<string,string>("1", "0"),
@@ -111,7 +111,7 @@ namespace XUnitTest.Repository
                 var users = await repository.GetUsersAsync(datasets.Single().Id);
 
                 Assert.Equal(3, users.Count);
-                Assert.Equal(new List<string> {"0", "1", "2" }, users);
+                Assert.Equal(new string[] { "0", "1", "2" }, users.Select(c=>c.Id).ToArray());
             }
             finally
             {

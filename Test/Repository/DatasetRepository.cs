@@ -43,20 +43,23 @@ namespace Test.Repository
             return _context.Datasets.ToListAsync();
         }
         
-        public Task<List<Tuple<string,string>>> GetFriendshipsAsync(string datasetId)
+        public Task<List<Friendship>> GetFriendshipsAsync(string datasetId)
         {
             return _context.Friendships
                 .Where(c => c.DatasetId == datasetId)
-                .Select(c => new Tuple<string, string>(c.UserOne, c.UserTwo))
                 .ToListAsync();
         }
 
-        public Task<List<string>> GetUsersAsync(string datasetId)
+        public Task<List<User>> GetUsersAsync(string datasetId)
         {
             var friendships = _context.Friendships.Where(c=>c.DatasetId == datasetId);
             return friendships
                 .Select(c => c.UserOne)
                 .Union(friendships.Select(c => c.UserTwo))
+                .Select(c => new User()
+                {
+                    Id = c
+                })
                 .ToListAsync();
         }
         
@@ -77,7 +80,7 @@ namespace Test.Repository
             var groupByUserTwo = friendships.GroupBy(c => c.UserTwo).Select(c => new { user = c.Key, count = c.Count() });
             await (groupByUserOne.Union(groupByUserTwo)).GroupBy(c => c.user)
                 .Select(c => new { c.Key, Count = c.Sum(c => c.count) })
-                .ForEachAsync(c=> dictionary.Add(c.Key, c.Count));
+                .ForEachAsync(c => dictionary.Add(c.Key, c.Count));
             return dictionary;
         }
     }

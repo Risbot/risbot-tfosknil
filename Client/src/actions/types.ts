@@ -1,4 +1,4 @@
-import { Dataset, Statistics } from '../types';
+import { Dataset, Statistics, Chart } from '../types';
 const DATASET_LIST_REQUEST = 'DATASET_LIST_REQUEST';
 const DATASET_LIST_SUCCESS = 'DATASET_LIST_SUCCESS';
 const DATASET_LIST_ERROR = 'DATASET_LIST_ERROR';
@@ -8,6 +8,9 @@ const DATASET_ADD_ERROR = 'DATASET_ADD_ERROR';
 const STATISTICS_DATA_REQUEST = 'STATISTICS_DATA_REQUEST';
 const STATISTICS_DATA_SUCCESS = 'STATISTICS_DATA_SUCCESS';
 const STATISTICS_DATA_ERROR = 'STATISTICS_DATA_ERROR';
+const CHART_REQUEST = 'CHART_REQUEST';
+const CHART_SUCCESS = 'CHART_SUCCESS';
+const CHART_ERROR = 'CHART_ERROR';
 
 export interface IFetchDatasetsRequest {
   type: typeof DATASET_LIST_REQUEST;
@@ -59,6 +62,19 @@ export interface IDatasetAddError {
   type: typeof DATASET_ADD_ERROR;
 }
 
+export interface IFetchChartRequest {
+  type: typeof CHART_REQUEST;
+}
+
+export interface IFetchChartSuccess {
+  type: typeof CHART_SUCCESS;
+  payload: Chart;
+}
+
+export interface IFetchChartError {
+  type: typeof CHART_ERROR;
+}
+
 export type Actions =
   | IFetchDatasetsRequest
   | IFetchDatasetsSuccess
@@ -68,4 +84,7 @@ export type Actions =
   | IDatasetAddError
   | IFetchStatisticsRequest
   | IFetchStatisticsSuccess
-  | IFetchStatisticsError;
+  | IFetchStatisticsError
+  | IFetchChartRequest
+  | IFetchChartSuccess
+  | IFetchChartError;
